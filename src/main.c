@@ -43,7 +43,7 @@ static void m_signal_handler(int a)
 int main(int argc, const char * argv[])
 {
    unsigned char rxBuffer[RX_BUFFER_HEADER + RX_BUFFER_SIZE + TTY_NAME_MAX + 1];
-   const char * const tty = "/dev/ttyUSB0";
+   const char * const tty = "/home/pi/zmodem_socket";
    const char * sysCall;
    int greets = 0;
    int serFd;

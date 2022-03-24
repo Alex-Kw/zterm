@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=./zdata
-DEV=/dev/ttyUSB0
+DEV=/home/pi/zmodem_socket
 
 stty -F $DEV 19200
 #echo -e '\r\n' > $DEV

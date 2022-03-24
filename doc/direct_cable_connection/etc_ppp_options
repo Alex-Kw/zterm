@@ -16,5 +16,5 @@ crtscts
 local
 connect 'chat TIMEOUT 20000 CLIENT CLIENTSERVER'
 19200
-/dev/ttyUSB0
+/home/pi/zmodem_socket
 

@@ -37,7 +37,7 @@ cd build
 ln -s ~/Downloads zdata
 ```
 
-Currently *zterm* is hard coded to use `/dev/ttyUSB0`. Its operates on *19200bps 8N1*. To start it you just has to call
+Currently *zterm* is hard coded to use `/home/pi/zmodem_socket`. Its operates on *19200bps 8N1*. To start it you just has to call
 ```
 ./zterm
 ```
