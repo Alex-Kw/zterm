@@ -1,5 +1,37 @@
 # zterm
+
 Linux base *serial terminal server* used to provide a simple way to transfer files to any kind of client, using zmodem protocol.
+
+# Mac / RaSCSI user note
+
+This is a fork of minlux/zterm with the hard coded baud rate and device name changed. It's intended to work on my Mac SE, and has been tested, but it's VERY slow. Also I have not gotten this going with reduced privileges, so it runs as ROOT, which is REALLY NOT SAFE. I hope to fix that.
+
+This requires ser2net to bind socat tty to a network port. * Currently, recreating the symlink pointing zmodem_socket to /dev/ttyUSB0 and then running ./zterm will make a null modem compatible version. This works with a USB to serial, and macintosh to db9 null modem serial cable.
+
+For network access (default) This fork binds to a symlink at /home/pi/zmodem_socket, which is directed to the pty created by socat. that pty is virtually connected to the other pty, symlinked to as /home/pi/ser2net_socket.
+ 
+It has been tested on Bluescsi, using something like the following:
+
+```
+# Installing:
+
+sudo apt-get install ser2net lrzsz cmake socat
+cd /home/pi
+git clone https://github.com/Alex-Kw/zterm
+
+
+# Using:
+sudo socat -d -d pty,raw,link=/home/pi/zmodem_socket,echo=0 pty,raw,link=/home/pi/ser2net_socket,echo=0 &
+# (EDIT SER2NET CONFIG) - **NEED TO ADD TO GIT** - enable 19200 baud / port 3001 by editing the default config /etc/ser2net.yaml (disable the other connections and correct the serial tty to /home/pi/ser2net_socket on the enabled connection).
+ser2net
+cd /home/pi/zterm/build
+mkdir /home/pi/zterm_public
+ln -s /home/pi/zterm_public zdata
+# Place any files you need in /home/pi/zterm_public/
+sudo ./zterm
+```
+
+Once that is running, use any serial application (I use an app completely unrelated to this project called zterm on my classic Mac). With a null modem the connection is basically established, but in my case for network access, I use a WiModem232 and "ATDT 192.168.1.15:3001" to connect from the classic macs terminal to the serial Zmodem server running on the RaSCSI.
 
 ![Hypter Terminal](doc/greetings.png)
 
