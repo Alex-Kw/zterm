@@ -10,7 +10,7 @@ This requires ser2net to bind socat tty to a network port. * Currently, recreati
 
 For network access (default) This fork binds to a symlink at /home/pi/zmodem_socket, which is directed to the pty created by socat. that pty is virtually connected to the other pty, symlinked to as /home/pi/ser2net_socket.
  
-It has been tested on Bluescsi, using something like the following:
+It has been tested on RaSCSI, using something like the following:
 
 ```
 # Installing:
